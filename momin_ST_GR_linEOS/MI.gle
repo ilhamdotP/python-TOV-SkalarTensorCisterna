@@ -1,0 +1,201 @@
+size 24 20
+set hei .7 just cent
+
+set texlabels 1
+
+amove 13 7
+begin graph
+    dn msize 0.25
+    nobox
+    size 12 10 
+    
+
+    nobox
+
+    xaxis min 0.1 max 0.32 dticks 0.05 hei .6
+      xticks length 0.3
+     yaxis  min 0.3 max 0.52  hei .6 dticks 0.05 nofirst
+      yticks length 0.3
+     ytitle "$I/MR^2$"  hei .7
+	xtitle "C" hei .7
+
+	
+
+	data "momin/Batas_Bawah_Lattimer.dat" d5=c1,c2
+	d5 marker fcircle color cyan
+
+	data "momin/Batas_Atas_Lattimer.dat" d6=c1,c2
+	d6 marker fcircle color cyan
+
+	data "momin/Batas_Bawah_Rezzola.dat" d7=c1,c2
+	d7 marker fsquare color orange
+
+	data "momin/Batas_Atas_Rezzola.dat" d8=c1,c2
+	d8 marker fsquare color orange
+
+     
+ 
+     data  "radmassmominGR.dat" d11=c5,c7
+     d11 line lstyle 1 color blue lwidth 0.1
+     
+     data  "radmassSTmomin_eta=-1,Qinf=0.dat" d21=c5,c9
+     d21 line lstyle 2 color black lwidth 0.1
+
+	 data "radmassSTmomin_eta=-1,Qinf=0.08.dat" d22=c5,c9
+     d22 line lstyle 3 color violet lwidth 0.1
+
+	 data "radmassSTmomin_eta=+1,Qinf=0.08.dat" d23=c5,c9
+     d23 line lstyle 4 color orange lwidth 0.1
+
+
+end graph
+
+
+
+begin key
+position br
+ hei .5
+nobox
+marker fcircle color cyan text "Lattimer \& Schutz (2005)"
+marker fsquare color orange  text "Breu \& Rezzolla (2016)"
+end key
+
+begin key
+position tl
+ hei .5
+nobox
+text "(c)"
+
+!text "$\Lambda_c = 2.08\times 10^{-52} $m$^{-2}$"
+end key
+
+
+
+amove 1 1
+begin graph
+    dn msize 0.25
+    nobox 
+    size 12 10 
+    
+
+    nobox
+
+      xaxis min 0.5 max 2.7 dticks 0.5  hei .6
+      xticks length 0.3
+     yaxis  min 0.5 max 4.2 dticks 1.  hei .6 
+      yticks length 0.3
+     ytitle "$I$ ($10^{45} $g cm$^2$)"  hei .7
+	xtitle "$M$ ($M_{\odot}$)" hei .7
+	
+     
+        data "radmassmominGR.dat" d11=c4,c8
+        d11 line lstyle 1 color blue lwidth 0.1  
+ 
+        data "radmassSTmomin_eta=-1,Qinf=0.dat" d21=c4,c10
+        d21 line lstyle 2 color black lwidth 0.1  
+		
+		data "radmassSTmomin_eta=-1,Qinf=0.08.dat" d22=c4,c10
+        d22 line lstyle 3 color violet lwidth 0.1
+
+	    data "radmassSTmomin_eta=+1,Qinf=0.08.dat" d23=c4,c10
+        d23 line lstyle 4 color orange lwidth 0.1
+
+     data "momin/InersiaLandry.dat" d32=c1,c2 d33=c1,c3 d34=c1,c4
+     d32 marker fsquare color black errup d34 errdown d33
+     
+
+    data "momin/InersiaZhang.dat" d72=c1,c2 d73=c1,c3 d74=c1,c4
+    d72 marker fcircle color indigo errup d74 errdown d73
+
+     data "momin/InersiaLim.dat" d12=c1,c2 d13=c1,c3 d14=c1,c4
+    d12 marker fdiamond color purple errup d14 errdown d13
+
+   
+
+end graph
+
+begin key
+position br
+hei .45
+nobox
+marker fsquare color black text "Landry et al 2020"
+marker fcircle color indigo text "Jiang et al 2019"
+marker fdiamond color purple text "Lim et al 2019"
+end key
+
+begin key
+position tl
+ hei .45
+nobox
+line lstyle 1 lwidth 0.1 color blue text "TOV-GR"
+line lstyle 2 lwidth 0.1 color black text "TOV-ST, $\eta=-1$, $Q_\infty/\sqrt{4\kappa/3}=0$"
+line lstyle 3 lwidth 0.1 color violet text "TOV-ST, $\eta=-1$, $Q_\infty/\sqrt{4\kappa/3}=0.08$"
+line lstyle 4 lwidth 0.1 color orange text "TOV-ST, $\eta=+1$, $Q_\infty/\sqrt{4\kappa/3}=0.08$"
+end key
+
+begin key
+position bl
+ hei .5
+nobox
+text "(b)"
+end key
+
+amove 1 11
+begin graph
+    dn msize 0.25
+    nobox 
+    size 12 10 
+    
+
+    nobox
+
+      xaxis min 0.5 max 2.7 dticks 0.5  hei .6
+      xticks length 0.3
+     yaxis  min 0.5 max 4.2 dticks 1.  hei .6 
+      yticks length 0.3
+     ytitle "$I$ ($10^{45} $g cm$^2$)"  hei .7
+	xtitle "$M$ ($M_{\odot}$)" hei .7
+	
+     
+  data  "radmassmominGR.dat" d11=c4,c8
+  d11 line lstyle 1 color blue lwidth 0.1 
+     
+  data  "radmassSTmomin_eta=-1,Qinf=0.dat" d21=c4,c10
+  d21 line lstyle 2 color black lwidth 0.1 
+  
+  data "radmassSTmomin_eta=-1,Qinf=0.08.dat" d22=c4,c10
+  d22 line lstyle 3 color violet lwidth 0.1
+
+  data "radmassSTmomin_eta=+1,Qinf=0.08.dat" d23=c4,c10
+  d23 line lstyle 4 color orange lwidth 0.1
+     
+    
+
+     data "momin/InersiaDNS.dat" d75=c1,c2 d76=c1,c3 d77=c1,c4
+     d75 marker fdiamond color lightblue errup d77 errdown d76
+
+     data "momin/InersiaMMP.dat" d84=c1,c2 d85=c1,c3 d86=c1,c4 d87=c1,c5 d88=c1,c6
+     d84 marker fcircle color lightgreen herrleft d85 herrright d86  errup d88 errdown d87
+
+    data "momin/InersiaLMXB.dat" d14=c1,c2 d15=c1,c3 d16=c1,c4 d17=c1,c5 d18=c1,c6
+     d14 marker fcircle color pink herrleft d15 herrright d16  errup d18 errdown d17
+
+end graph
+
+begin key
+position tl
+hei .45
+nobox
+text "$\rho=3P+4\times(145)^4/(\hbar c)^3$"
+marker fdiamond color lightblue text "DNS Kumar \& Landry 2019"
+marker fcircle color lightgreen text "MSP Kumar \& Landry 2019"
+marker fsquare color pink text "LMXB Kumar \& Landry 2019"
+end key
+begin key
+
+position bl
+ hei .5
+nobox
+text "(a)"
+end key
+
