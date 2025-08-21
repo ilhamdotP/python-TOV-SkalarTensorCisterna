@@ -1,0 +1,70 @@
+size 12 10                              !Sets the size of the paper
+
+set texlabels 1
+
+GS = 1.325*10^(-12)
+MSS = 1.1155*10^(15)
+
+sub photonring x
+   return 10^3/(3*GS*MSS)*x
+end sub
+
+amove 0.5 0.5
+begin graph
+        size 12 10                      !Sets the size of the graph
+     
+     data "massrad/Miller_etal_PSR_J0430+0451.csv" d111=c1,c2
+     fill d111 color cyan
+     
+     data "massrad/Riley_etal_PSR_J0430+0451.csv" d112=c1,c2
+     fill d112 color tan
+     
+     data "massrad/Miller_etal_PSR_J0740+6620.csv" d113=c1,c2
+     fill d113 color skyblue
+     
+     data "massrad/Riley_etal_PSR_J0740+6620.csv" d114=c1,c2
+     fill d114 color wheat
+	 
+		data "radmassmominGR.dat"   d30=c3,c4 
+		d30 line lstyle 0 lwidth 0.06 color red
+		
+		data "radmassSTmomin_eta=+1,Qinf=0.dat"   d37=c3,c4 
+		d37 line lstyle 7 lwidth 0.06 color pink
+		
+		data "radmassSTmomin_eta=-1,Qinf=0.04.dat"   d38=c3,c4 
+		d38 line lstyle 8 lwidth 0.06 color violet
+		
+		data "radmassSTmomin_eta=+1,Qinf=0.04.dat"   d39=c3,c4 
+		d39 line lstyle 9 lwidth 0.06 color orange
+		
+		yaxis min 0 max 5 nticks 4 hei .5
+		xaxis min 5 max 20 nticks 4 hei .5
+        ytitle "$M (M_{\odot})$"  hei .5
+		xtitle "$R ($km$)$" hei .5
+		
+		let d2 = photonring(x) from 5 to 20
+		d2 line lstyle 0 lwidth 0.02 color black
+		!key pos tl hei 0.4
+end graph 
+!marker circle msize 0.2 
+
+begin key
+position tl
+hei .3
+ nobox
+  text "Zhang EOS, $\bar{\lambda}=10$, $B=(145$ MeV)$^4$"
+		line lstyle 0 lwidth 0.06 color red             text "TOV-GR"
+		line lstyle 7 lwidth 0.06 color pink            text "TOV-ST, $\eta=-1$, $Q_\infty/\sqrt{4\kappa/3}=0$"
+		line lstyle 8 lwidth 0.06 color violet          text "TOV-ST, $\eta=-1$, $Q_\infty/\sqrt{4\kappa/3}=0.04$"
+		line lstyle 9 lwidth 0.06 color orange          text "TOV-ST, $\eta=+1$, $Q_\infty/\sqrt{4\kappa/3}=0.04$"
+		line lstyle 0 lwidth 0.02 color black			text "Photon Sphere"
+end key
+
+begin key
+  nobox
+    position br
+    fill cyan     text "Miller et al. (2019)"
+    fill tan      text "Riley et al. (2019)"
+    fill skyblue  text "Miller et al. (2021)"
+    fill wheat    text "Riley et al. (2021)"
+  end key
